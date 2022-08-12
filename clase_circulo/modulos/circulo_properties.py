@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sun Jul 24 12:27:17 2022
+Created on Thu Aug 11 11:06:18 2022
 
 @author: je_su
 """
@@ -15,7 +15,7 @@ class Circulo:
         radio: int. valor entero que representa el radio del círculo
     """    
     def __init__(self, radio=0):       
-        self._radio = radio
+        self.radio = radio
         
     def get_radio(self):
         """getter de radio"""
@@ -27,7 +27,11 @@ class Circulo:
         valor : int
             valor entero positivo para modificar el radio.
         """
-        self._radio = valor
+        if valor < 0:
+            self._radio = 0
+            print("no puede ingresar valores negativos")
+        else:
+            self._radio = valor
         
     def get_area(self):
         """calcula y retorna el valor del área con 2 decimales de precisión"""
@@ -38,15 +42,25 @@ class Circulo:
         """calcula y retorna el valor del perímetro con 2 decimales de precisión"""
         perimetro = 2*math.pi*self.get_radio()
         return round(perimetro, 2)        
+    
+    radio = property(
+        fget = get_radio,
+        fset = set_radio,
+        doc = "propiedad radio del circulo"
+        )
+    
+    area = property(
+        fget = get_area,
+        doc = "propiedad area del ciculo"
+        )
 
 
 if __name__ == "__main__":
     
-    c1 = Circulo(5)
+    c1 = Circulo(-5)
 
-    print(c1.get_radio())
-    print(c1._radio)
+    print(c1.radio)
+    c1.radio = -4
     
     print(c1.get_area())
     print(c1.get_perimetro())
-    
