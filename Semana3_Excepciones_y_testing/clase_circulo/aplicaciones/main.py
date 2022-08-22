@@ -5,14 +5,18 @@ Created on Thu Aug 11 12:32:05 2022
 @author: je_su
 """
 
-from modulos.circulo import Circulo
+from modulos.circulo import Circulo, OutOfRangeError
 
 def main():
     
-    c1 = Circulo(5)
-    print(c1.radio)
-    print("área del círculo:", c1.area)
-    print("perímetro del círculo:", c1.perimetro)
+    try:
+        c1 = Circulo(-5)
+        
+    except OutOfRangeError as msg:
+        print(msg)
+    else:
+        print(c1.radio) 
+        print(c1.perimetro)
     
     
 if __name__ == "__main__":

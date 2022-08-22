@@ -6,6 +6,12 @@ Created on Thu Aug 11 11:14:15 2022
 """
 import math
 
+
+class OutOfRangeError(Exception):
+    """Error que ocurre al ingresar un valor no válido del radio"""
+    
+
+
 class Circulo:
     """clase que modela un círculo mediante su atributo radio posee métodos para 
     modificar/obtener el radio y para calcular y devolver su perímetro y su área.
@@ -21,6 +27,7 @@ class Circulo:
         """getter de radio"""
         return self._radio
     
+    
     @radio.setter
     def radio(self, valor):
         """setter de radio
@@ -29,8 +36,7 @@ class Circulo:
             valor entero positivo para modificar el radio.
         """
         if valor < 0:
-            self._radio = 0
-            print("no puede ingresar valores negativos")
+            raise OutOfRangeError("no puede ingresar valores negativos")
         else:
             self._radio = valor
             
@@ -44,7 +50,7 @@ class Circulo:
     def perimetro(self):
         """calcula y retorna el valor del perímetro con 2 decimales de precisión"""
         perimetro = 2*math.pi*self.radio
-        return round(perimetro, 2)        
+        return round(perimetro, 4)        
     
     
 
